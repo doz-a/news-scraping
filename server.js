@@ -47,7 +47,7 @@ app.use(express.static("public"));
 
 var DB_URL = process.env.MONGODB_URI;
 // Connect to the Mongo DB
-mongoose.connect("mongodb://miguel:newsscraper1@ds359847.mlab.com:59847/heroku_w59t3d2v", { useNewUrlParser: true });
+mongoose.connect(DB_URL, { useNewUrlParser: true });
 // Routes
 
 // main page 
