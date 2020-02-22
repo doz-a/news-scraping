@@ -40,7 +40,7 @@ if (environment === "local") {
   DB_URL = "mongodb://localhost/unit18Populater"
 }
 else {
-  DB_URL = process.env.MONGO_URI
+  DB_URL = process.env.MONGODB_URI
   console.log(DB_URL);
 }
 // Connect to the Mongo DB
