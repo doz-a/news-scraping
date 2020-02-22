@@ -1,7 +1,8 @@
+require('dotenv').config();
+
 // Dependencies
 var express = require("express");
 var mongojs = require("mongojs");
-require('dotenv').config();
 // Require axios and cheerio. This makes the scraping possible
 var axios = require("axios");
 var cheerio = require("cheerio");
