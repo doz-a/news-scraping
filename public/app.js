@@ -19,7 +19,7 @@ $(document).on("click", "a", function () {
   // Empty the notes from the note section
   $("#notes").empty();
   console.log("successful click");
-  // Save the id from the p tag
+  // Save the id from the a tag
   var thisId = $(this).attr("data-id");
 
   // Now make an ajax call for the Article
@@ -38,8 +38,11 @@ $(document).on("click", "a", function () {
       if (data.note) {
         // Place the title of the note in the title input
         $("#notes").append(`
+        
         <h5>${data.note.title}</h5>
         ${data.note.body}
+        <br>
+        <button data-id='${data.note}' id='deleteNote'>Delete Note</button>
         <hr>
         `);
       }

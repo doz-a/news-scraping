@@ -26,41 +26,11 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-// Set Handlebars
-// var exphbs = require("express-handlebars");
-
-// app.engine("handlebars", exphbs({
-//   defaultLayout: "main",
-//   // partialsDir: path.join(__dirname, "/views/layouts/partials")
-// }));
-// app.set("view engine", "handlebars");
-
-// var DB_URL;
-// var environment = "prod" // "local"
-// if (environment === "local") {
-//   DB_URL = "mongodb://localhost/unit18Populater"
-// }
-// else {
-//   DB_URL = process.env.MONGODB_URI
-//   console.log(DB_URL);
-// }
-
 var DB_URL = process.env.MONGODB_URI;
 // Connect to the Mongo DB
 mongoose.connect(DB_URL, { useNewUrlParser: true });
-// Routes
 
-// main page 
-// app.get("/", function (req, res) {
-//   console.log("main page");
-//   Article.find({ "saved": false }, function (error, data) {
-//     var hbsObject = {
-//       article: data
-//     };
-//     console.log(hbsObject);
-//     res.render("index", hbsObject);
-//   });
-// });
+// Routes
 
 // A GET route for scraping the NY website
 app.get("/scrape", function (req, res) {
@@ -78,9 +48,6 @@ app.get("/scrape", function (req, res) {
       result.title = $(this).find("h2").text();
       result.link = "https://www.nytimes.com/" + $(this).children("a").attr("href");
       result.summary = $(this).find(".css-1echdzn.e1xfvim31").text();
-
-      // Prevent duplicate articles 
-      // if (result.title.includes(value) === false) array.push(value);
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)

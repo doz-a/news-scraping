@@ -11,25 +11,6 @@ nav {
     background-color: white;
 }
 
-/* #wrapper {
-    width: 960px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 5%;
-} */
-
-/* #articles {
-    display: inline-block;
-    overflow: auto;
-    width: 60%;
-    height: 700px;
-} */
-
-/* #notes {
-    float: right;
-    width: 30%;x
-} */
-
 #header1 {
     color: black;
     opacity: .85;
@@ -41,7 +22,6 @@ nav {
 textarea, input {
     display: block;
     width: 100%;
-    /* background-color: #FCF5C7; */
 }
 
 input {
