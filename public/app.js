@@ -38,7 +38,7 @@ $(document).on("click", "a", function () {
       if (data.note) {
         // Place the title of the note in the title input
         $("#notes").append(`
-        
+
         <h5>${data.note.title}</h5>
         ${data.note.body}
         <br>
@@ -79,7 +79,6 @@ $(document).on("click", "#savenote", function () {
       $("#notes").empty();
     });
 
-  // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
