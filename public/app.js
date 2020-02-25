@@ -42,7 +42,7 @@ $(document).on("click", "a", function () {
         <h5>${data.note.title}</h5>
         ${data.note.body}
         <br>
-        <button data-id='${data.note}' id='deleteNote'>Delete Note</button>
+        <button data-id='${data.note._id}' id='deleteNote'>Delete Note</button>
         <hr>
         `);
       }
@@ -63,6 +63,37 @@ $(document).on("click", "#savenote", function () {
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
+    url: "/articles/" + thisId,
+    data: {
+      // Value taken from title input
+      title: $("#titleinput").val(),
+      // Value taken from note textarea
+      body: $("#bodyinput").val()
+    }
+  })
+    // With that done
+    .then(function (data) {
+      // Log the response
+      console.log(data);
+      // Empty the notes section
+      $("#notes").empty();
+    });
+
+  $("#titleinput").val("");
+  $("#bodyinput").val("");
+});
+
+// scrape button
+
+
+// When you click the deleteNote button
+$(document).on("click", "#deleteNote", function () {
+  // Grab the id associated with the article from the delete button
+  var thisId = $(this).attr("data-id");
+
+  // Run a delete request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "DELETE",
     url: "/articles/" + thisId,
     data: {
       // Value taken from title input

@@ -49,6 +49,11 @@ app.get("/scrape", function (req, res) {
       result.link = "https://www.nytimes.com/" + $(this).children("a").attr("href");
       result.summary = $(this).find(".css-1echdzn.e1xfvim31").text();
 
+      // prevent matches (not working yet)
+      // db.Article.findOne({ title: result.title })
+      //   .then(function () { return false }
+      //   );
+
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
         .then(function (dbArticle) {
@@ -62,7 +67,7 @@ app.get("/scrape", function (req, res) {
     });
 
     // Send a message to the client
-    res.send("Scrape Complete");
+    res.redirect("/");
   });
 });
 
@@ -101,6 +106,22 @@ app.post("/articles/:id", function (req, res) {
     .then(function (dbNote) {
       return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
     })
+    .then(function (dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+
+app.delete("/articles/:id", function (req, res) {
+  // // Create a new note and pass the req.body to the entry
+  // console.log(res);
+  console.log(req.params.id);
+  db.Note.deleteOne({ _id: req.params.id })
+    // .then(function (dbNote) {
+    //   return db.Article.deleteOne({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+    // })
     .then(function (dbArticle) {
       res.json(dbArticle);
     })
